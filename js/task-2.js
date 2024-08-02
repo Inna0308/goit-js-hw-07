@@ -25,6 +25,8 @@ const images = [
   },
 ];
 
+// ^ ВАРІАНТ 1//
+/* 
 const createGalleryCard = (pictureInfo) => {
   const galleryItemEl = document.createElement("li");
   galleryItemEl.classList.add("gallery-item");
@@ -41,3 +43,19 @@ const galleryCards = images.map((imgInfo) => createGalleryCard(imgInfo));
 
 const galleryListEl = document.querySelector(".gallery");
 galleryListEl.append(...galleryCards);
+ */
+
+// ^ ВАРІАНТ 2//
+
+const createGalleryCard = (pictureInfo) => {
+  return `
+  <li class="gallery-item">
+      <img src="${pictureInfo.url}" alt="${pictureInfo.alt}">
+  </li>
+  `;
+};
+
+const galleryCards = images.map((imgInfo) => createGalleryCard(imgInfo)).join("");
+
+const galleryListEl = document.querySelector(".gallery");
+galleryListEl.insertAdjacentHTML("beforeend", galleryCards);
